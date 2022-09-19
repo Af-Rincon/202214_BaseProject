@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "30bdfc5a-95da-4d54-bbca-f4391b623565",
+		"name": "Supermercado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un supermercado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermercado_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Supermercado La Plaza de Lucho\",\r\n    \"longitud\": \"32.3213\",\r\n    \"latitud\": \"32.3213\",\r\n    \"paginaWeb\": \"supermercadodedonlucho.com\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/supermercados/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermercados",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un supermercado inválido ()",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Superm\",\r\n    \"longitud\": \"32.3213\",\r\n    \"latitud\": \"32.3213\",\r\n    \"paginaWeb\": \"supermercadodedonlucho.com\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/supermercados/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermercados",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get todos los supermercado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/supermercados/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermercados",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get un supermercado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/supermercados/{{supermercado_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermercados",
+						"{{supermercado_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get un supermercado que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/supermercados/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermercados",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un supermercado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Supermercado La Plaza de Lucho\",\r\n    \"longitud\": \"32.3213\",\r\n    \"latitud\": \"32.3213\",\r\n    \"paginaWeb\": \"supermercadodedonluchonosmudamos.com\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/supermercados/{{supermercado_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermercados",
+						"{{supermercado_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un supermercado a invalido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Superm\",\r\n    \"longitud\": \"32.3213\",\r\n    \"latitud\": \"32.3213\",\r\n    \"paginaWeb\": \"supermercadodedonlucho.com\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/supermercados/{{supermercado_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermercados",
+						"{{supermercado_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un supermercado que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Superm\",\r\n    \"longitud\": \"32.3213\",\r\n    \"latitud\": \"32.3213\",\r\n    \"paginaWeb\": \"supermercadodedonlucho.com\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/supermercados/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermercados",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/supermercados/{{supermercado_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermercados",
+						"{{supermercado_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/supermercados/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermercados",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}

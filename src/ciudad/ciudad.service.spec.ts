@@ -16,8 +16,8 @@ describe('CiudadService', () => {
     ciudadList = [];
     for (let i = 0; i < 5; i++) {
       const ciudad: CiudadEntity = await repository.save({
-        nombre: faker.helpers.arrayElement(['Argentina', 'Ecuador', 'Paraguay']),
-        pais: faker.address.country(),
+        nombre: faker.address.cityName(),
+        pais: faker.helpers.arrayElement(['Argentina', 'Ecuador', 'Paraguay']),
         numHabitantes: faker.datatype.number(),
         supermercados:[]
      
@@ -57,11 +57,11 @@ describe('CiudadService', () => {
   it('create should return a new city', async () => {
     const ciudad: CiudadEntity = {
       id: '',
-      nombre: faker.helpers.arrayElement(['Argentina', 'Ecuador', 'Paraguay']),
-      pais: faker.address.country(),
+      nombre: faker.address.cityName(),
+      pais: faker.helpers.arrayElement(['Argentina', 'Ecuador', 'Paraguay']),
       numHabitantes: faker.datatype.number(),
       supermercados:[]
-    };
+  };
   
     const newCiudad: CiudadEntity = await service.create(ciudad);
     expect(newCiudad).not.toBeNull();
@@ -76,14 +76,14 @@ describe('CiudadService', () => {
   it('create should not return a new city with wrong name', async () => {
     const ciudad: CiudadEntity = {
       id: '',
-      nombre: faker.helpers.fake('Colombia'),
-      pais: faker.address.country(),
+      pais: faker.helpers.fake('Colombia'),
+      nombre: faker.address.cityName(),
       numHabitantes: faker.datatype.number(),
       supermercados:[]
     };
     await expect(() => service.create(ciudad)).rejects.toHaveProperty(
       'message',
-      'The city name is not valid',
+      'The city country is not valid',
     );
 
   });
@@ -106,7 +106,7 @@ describe('CiudadService', () => {
     let ciudad: CiudadEntity = ciudadList[0];
     ciudad = {
       ...ciudad,
-      nombre: 'New name',
+      pais: 'New name',
     };
     await expect(() => service.update('0', ciudad)).rejects.toHaveProperty(
       'message',

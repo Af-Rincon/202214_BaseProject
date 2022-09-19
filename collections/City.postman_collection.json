@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "73101c99-386e-4b63-a733-e5db39614c96",
+		"name": "City",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"ciudad_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Buenos Aires\",\r\n    \"pais\": \"Argentina\",\r\n    \"numHabitantes\": 10000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/ciudades/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ciudades",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una ciudad inválida (nombre)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Buenos Aires\",\r\n    \"pais\": \"Colombia\",\r\n    \"numHabitantes\": 10000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/ciudades/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ciudades",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get todas las ciudades",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ciudades/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ciudades",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ciudades/{{ciudad_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ciudades",
+						"{{ciudad_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get una ciudad que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ciudades/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ciudades",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Buenos Aires\",\r\n    \"pais\": \"Argentina\",\r\n    \"numHabitantes\": 100000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/ciudades/{{ciudad_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ciudades",
+						"{{ciudad_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una ciudad que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Buenos Aires\",\r\n    \"pais\": \"Argentina\",\r\n    \"numHabitantes\": 10000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/ciudades/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ciudades",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una ciudad a invalida (nombre)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Buenos Aires\",\r\n    \"pais\": \"Colombia\",\r\n    \"numHabitantes\": 100000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/ciudades/{{ciudad_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ciudades",
+						"{{ciudad_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ciudades/{{ciudad_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ciudades",
+						"{{ciudad_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una ciudad que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ciudades/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ciudades",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}

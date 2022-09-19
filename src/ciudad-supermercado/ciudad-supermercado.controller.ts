@@ -5,7 +5,7 @@ import { plainToInstance } from 'class-transformer';
 import { SupermercadoDto } from '../supermercado/supermercado.dto';
 import { SupermercadoEntity } from '../supermercado/supermercado.entity';
 
-@Controller('ciudad')
+@Controller('ciudades')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CiudadSupermercadoController {
    constructor(private readonly CiudadSupermercadoService: CiudadSupermercadoService){}

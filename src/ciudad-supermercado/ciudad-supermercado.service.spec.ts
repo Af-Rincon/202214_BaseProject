@@ -44,8 +44,8 @@ describe('CiudadSupermercadoService', () => {
     }
 
     ciudad = await ciudadRepository.save({
-      nombre: faker.helpers.arrayElement(['Argentina', 'Ecuador', 'Paraguay']),
-      pais: faker.address.country(),
+      pais: faker.helpers.arrayElement(['Argentina', 'Ecuador', 'Paraguay']),
+      nombre: faker.address.country(),
       numHabitantes: faker.datatype.number(),
       supermercados: supermercadoList,
   });
@@ -64,8 +64,8 @@ describe('CiudadSupermercadoService', () => {
     });
 
     const newCiudad: CiudadEntity = await ciudadRepository.save({
-      nombre: faker.helpers.arrayElement(['Argentina', 'Ecuador', 'Paraguay']),
-      pais: faker.address.country(),
+      pais: faker.helpers.arrayElement(['Argentina', 'Ecuador', 'Paraguay']),
+      nombre: faker.address.country(),
       numHabitantes: faker.datatype.number(),
   });
 

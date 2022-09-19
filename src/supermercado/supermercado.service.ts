@@ -40,6 +40,12 @@ export class SupermercadoService {
         if (!persistedSupermercado)
           throw new BusinessLogicException("The supermarket with the given id was not found", BusinessError.NOT_FOUND);
        
+          if(supermercado.nombre.length<11){
+            throw new BusinessLogicException(
+              'The supermarket name with the given id has less than 11 characters',
+              BusinessError.PRECONDITION_FAILED,
+            );}
+
         supermercado.id = id; 
        
         return await this.supermercadoRepository.save(supermercado);

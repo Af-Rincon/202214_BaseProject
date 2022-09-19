@@ -27,9 +27,9 @@ export class CiudadService {
     async create(ciudad: CiudadEntity): Promise<CiudadEntity> {
 
         
-        if(ciudad.nombre !='Argentina'&& ciudad.nombre!='Ecuador'&& ciudad.nombre!='Paraguay'){
+        if(ciudad.pais !='Argentina'&& ciudad.pais!='Ecuador'&& ciudad.pais!='Paraguay'){
             throw new BusinessLogicException(
-              'The city name is not valid',
+              'The city country is not valid',
               BusinessError.PRECONDITION_FAILED,
             );}
 
@@ -42,7 +42,13 @@ export class CiudadService {
           throw new BusinessLogicException("The city with the given id was not found", BusinessError.NOT_FOUND);
        
         ciudad.id = id; 
-       
+        if(ciudad.pais !='Argentina'&& ciudad.pais!='Ecuador'&& ciudad.pais!='Paraguay'){
+          throw new BusinessLogicException(
+            'The city country is not valid',
+            BusinessError.PRECONDITION_FAILED,
+          );}
+
+     
         return await this.ciudadRepository.save(ciudad);
     }
  
